@@ -8,7 +8,7 @@ import { Header } from "./components/Header"
 import { SetStateAction, useEffect, useState } from "react"
 import { Input } from "@/app/components/ui/input"
 import { Sword, X } from "lucide-react";
-import { ModalBattleHero } from "./components/ModalBattleHero";
+import { HeroesBattleModal } from "./components/HeroesBattleModal";
 import { Button, CircularProgress } from "@mui/material";
 
 interface hero {
@@ -48,7 +48,7 @@ export default function Home() {
       })
       .catch(error => {
         setLoading(false)
-        console.error('Ocorreu um erro:', error)
+        console.error('Error:', error)
       })
   }, [])
 
@@ -102,14 +102,14 @@ export default function Home() {
             className="text-4xl text-gray-500 flex flex-col items-center justify-center gap-2"
           >
             <CircularProgress/>
-            Carregando...
+            Loading...
           </div>
         ) : (
           <Card
-            className="w-full h-[570px] mt-20 overflow-hidden"
+            className="w-full h-[620px] mt-20 overflow-hidden py-3"
           >
             <CardHeader
-              className="flex items-center justify-around sm:flex-row"
+              className="flex items-center justify-around border-b-2 sm:flex-row"
             >
               <div>
                 <CardTitle
@@ -119,6 +119,7 @@ export default function Home() {
               </div>
               <div>
                 <Input
+                  type="search"
                   placeholder="Search name to hero"
                   value={filter}
                   onChange={handleFilterChange}
@@ -126,20 +127,20 @@ export default function Home() {
               </div>
             </CardHeader>
             <CardContent
-              className="overflow-y-scroll h-[470px] bg-slate-950 px-2 text-white"
+              className="overflow-y-scroll h-[442px] bg-slate-950 text-white"
             >
               <div
-                className={`w-full h-full grid grid-cols-2 gap-4 pt-3 sm:grid-cols-3 lg:grid-cols-4`}
+                className={`w-full h-full grid grid-cols-2 gap-4 py-2 sm:grid-cols-3 lg:grid-cols-4`}
               >
                 {filteredData.map(hero => (
                   <div 
-                    className="flex flex-col items-center gap-1 border-2 border-slate-400 p-1 rounded"
+                    className="flex flex-col items-center gap-1 border-2 border-slate-400 py-2 rounded"
                     key={hero.id}
                   >
                     <img 
                       className='h-36 w-28 rounded-md sm:h-60 sm:w-40'
                       src={hero.images.md} 
-                      alt="Imagem de perfil do herói"
+                      alt="Hero profile picture"
                     />
                     {hero.name}
                     <div
@@ -167,8 +168,9 @@ export default function Home() {
           </Card>
         )}
       </main>
+
       {isModalOpen && (
-        <ModalBattleHero
+        <HeroesBattleModal
           heroes={selectedHeroes}
           closeModal={() => {setIsModalOpen(false); resetSelectedHeroes() }}
         />

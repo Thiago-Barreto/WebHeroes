@@ -31,7 +31,7 @@ interface HerosSelected {
   closeModal: () => void
 }
 
-export function ModalBattleHero({closeModal, heroes}: HerosSelected): React.JSX.Element {
+export function HeroesBattleModal({closeModal, heroes}: HerosSelected): React.JSX.Element {
 
   const [hero1, hero2] = heroes;
 
@@ -81,7 +81,7 @@ if (scoreHero1 > scoreHero2) {
 } else if (scoreHero2 > scoreHero1) {
   winner = hero2;
 } else {
-  winner = 'Empate';
+  winner = 'A tie';
 }
 
   return (
@@ -113,9 +113,9 @@ if (scoreHero1 > scoreHero2) {
                 className="text-sm font-semibold text-center sm:text-lg"
               >
                 <span
-                  className={winner === 'Empate' ? 'text-yellow-500' : (winner === hero1 ? 'text-green-500' : 'text-red-500')}
+                  className={winner === 'A tie' ? 'text-yellow-500' : (winner === hero1 ? 'text-green-500' : 'text-red-500')}
                 >
-                   {winner === 'Empate' ? 'Empate ' : (winner === hero1 ? 'Winner ' : 'Loser ')}
+                   {winner === 'A tie' ? 'A tie ' : (winner === hero1 ? 'Winner ' : 'Loser ')}
                 </span>
                   {hero1.name}
               </h3>
@@ -280,9 +280,9 @@ if (scoreHero1 > scoreHero2) {
                 className="font-semibold text-sm sm:text-lg"
               >
                 <span 
-                  className={winner === 'Empate' ? 'text-yellow-500' : (winner === hero2 ? 'text-green-500' : 'text-red-500')}
+                  className={winner === 'A tie' ? 'text-yellow-500' : (winner === hero2 ? 'text-green-500' : 'text-red-500')}
                 >
-                   {winner === 'Empate' ? 'Empate ' : (winner === hero2 ? 'Winner ' : 'Loser ')}
+                   {winner === 'A tie' ? 'A tie ' : (winner === hero2 ? 'Winner ' : 'Loser ')}
                 </span>
                 {hero2.name}
               </h3>
